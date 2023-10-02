@@ -1,0 +1,29 @@
+_id: lu04TIRrg9P3vRqY
+name: Peacemaker
+type: archetype
+img: icons/svg/invisible.svg
+system:
+  source: 'FoundryVTT CoC7'
+  description:
+    value: '<p>A problem solver who possesses a natural ability to find or see the “eye of the storm” and see an issue from all sides. Motivated by harmony, the peacemaker seeks to maintain the balance, be it between individuals or groups of people, and preserve the status quo. They aim to bring solutions and can be very adaptable, although sometimes to their own detriment as they can put everyone else ahead of their own needs. While often described as “easy going” or a “push over,” they can be steadfast, level-headed, and bold, especially when a crisis strikes.</p>'
+  suggestedOccupations: '<p>Athlete, Bartender/Waitress, Beat Cop, Butler, Criminal, Elected Official, Laborer, Missionary, Nurse, Priest, Secretary, Yogi.</p>'
+  suggestedTraits: '<p>calm under pressure, level-headed, unassuming, selfless.</p>'
+  coreCharacteristics:
+    app: true
+    int: true
+  skills:
+   - i.skill.charm
+   - i.skill.fast-talk
+   - i.skill.history
+   - i.skill.first-aid
+   - i.skill.intimidate
+   - i.skill.language-any
+   - i.skill.listen
+   - i.skill.persuade
+   - i.skill.psychology
+   - i.skill.spot-hidden
+flags:
+  cocidFlag:
+    id: i.archetype.peacemaker
+    lang: en
+    priority: 0

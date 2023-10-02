@@ -1,0 +1,17 @@
+_id: PFpgtSKUcBDLVLY6
+name: Phobia 1
+type: status
+img: icons/svg/aura.svg
+system:
+  source: ''
+  type:
+    phobia: true
+---
+_id: 2dqgtyGfwr8M60he
+name: Phobia 2
+type: status
+img: icons/svg/aura.svg
+system:
+  source: ''
+  type:
+    phobia: true

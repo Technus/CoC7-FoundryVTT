@@ -1,0 +1,42 @@
+_id: NOsh6EdNSjpjahDF
+name: Street Vendor
+type: occupation
+img: icons/svg/ice-aura.svg
+system:
+  source: 'FoundryVTT CoC7'
+  description:
+    value: '<p>Also commonly known as “hawkers” and “peddlers,” street vendors travel around, usually with a handcart or trolley, selling small things to passersby, such as hand-crafted objects, food and snacks, or other inexpensive items. They are known for shouting out or otherwise vocalizing their wares to attract customers, as well as their turn of phrase or banter to up-sell and enhance sales.</p><p>Being on the street all day means they get to know different localities, the comings and goings of residents, and are a magnet for collecting—or starting—gossip.</p><p><strong>Suggested Contacts:</strong> other vendors, local law enforcement, trade suppliers, butlers and other household staff.</p>'
+  type:
+    classic: true
+  occupationSkillPoints:
+    app:
+      multiplier: 4
+      selected: true
+  creditRating:
+    min: 10
+    max: 40
+  skills:
+   - i.skill.appraise
+   - i.skill.fighting-brawl
+   - i.skill.listen
+   - i.skill.navigate
+   - i.skill.psychology
+  groups:
+   - options: 1
+     skills:
+      - i.skill.accounting
+      - i.skill.art-craft-any
+   - options: 1
+     skills:
+      - i.skill.charm
+      - i.skill.fast-talk
+   - options: 1
+     skills:
+      - i.skill.language-any
+      - i.skill.sleight-of-hand
+  personal: 0
+flags:
+  cocidFlag:
+    id: i.occupation.street-vendor
+    lang: en
+    priority: 0

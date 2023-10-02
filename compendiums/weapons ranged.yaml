@@ -1,0 +1,17 @@
+_id: 
+name: Death ray
+type: weapon
+img: icons/svg/sword.svg
+system:
+  range:
+    normal:
+      value: 50ft
+      damage: 5d6
+  usesPerRound:
+    max: ''
+    burst: ''
+  bullets: ''
+  malfunction: ''
+  properties:
+    rngd: true
+    slnt: true

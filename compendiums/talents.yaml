@@ -1,0 +1,17 @@
+_id: yqvwz769ZeJplOW7
+name: Talent 1
+type: talent
+img: icons/svg/item-bag.svg
+system:
+  source: ''
+  type:
+    physical: true
+---
+_id: NVz7eCFnoH8J12qH
+name: Talent 2
+type: talent
+img: icons/svg/item-bag.svg
+system:
+  source: ''
+  type:
+    mental: true

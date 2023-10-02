@@ -1,0 +1,17 @@
+_id: DVdvEDizPZPux1pK
+name: Mania 1
+type: status
+img: icons/svg/aura.svg
+system:
+  source: ''
+  type:
+    mania: true
+---
+_id: Vm9OzZnAVOpDdwfB
+name: Mania 2
+type: status
+img: icons/svg/aura.svg
+system:
+  source: ''
+  type:
+    mania: true

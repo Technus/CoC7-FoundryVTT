@@ -1,0 +1,40 @@
+_id: 3elxAwnv7WCUNwng
+name: Punch
+type: weapon
+img: systems/CoC7/assets/icons/skills/fighting_brawl.svg
+system:
+  skill:
+    main:
+      name: Brawl
+  range:
+    normal:
+      damage: 1D3
+  usesPerRound:
+    max: ''
+  bullets: ''
+  malfunction: ''
+  properties:
+    melee: true
+    addb: true
+flags:
+  cocidFlag:
+    id: i.weapon.brawl
+    lang: en
+    priority: 0
+---
+_id: 
+name: Death grip
+type: weapon
+img: icons/svg/sword.svg
+system:
+  range:
+    normal:
+      damage: 5d6
+  usesPerRound:
+    max: ''
+    burst: ''
+  bullets: ''
+  malfunction: ''
+  properties:
+    rngd: true
+    slnt: true

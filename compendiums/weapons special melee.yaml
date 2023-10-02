@@ -1,0 +1,16 @@
+_id:
+name: Death grip (prototype)
+type: weapon
+img: icons/svg/sword.svg
+system:
+  range:
+    normal:
+      damage: 5d6
+  usesPerRound:
+    max: ''
+    burst: ''
+  bullets: ''
+  malfunction: 85
+  properties:
+    rngd: true
+    slnt: true
