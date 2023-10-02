@@ -12,12 +12,14 @@ import WebpackBar from 'webpackbar'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-/** Set the run mode for @constant bundleScript */
+const buildModes = { production: 'production', development: 'development' }
+
+/** The run mode for @constant bundleScript */
 const buildMode =
-  process.argv[3] === 'production' ? 'production' : 'development'
+  process.argv[3] === buildModes.production ? buildModes.production : buildModes.development
 
 function systemFolderName () {
-  if (buildMode === 'development') {
+  if (buildMode === buildModes.development) {
     const validDirectoryName = /^[a-zA-Z].*/
     if (validDirectoryName.test(developmentOptions.systemFolderName)) {
       return developmentOptions.systemFolderName
@@ -31,16 +33,15 @@ function systemFolderName () {
  * userDataPath inside fvtt.config.js
  */
 function buildDestination () {
-  const { userDataPath } = developmentOptions
-  if (fs.existsSync(userDataPath)) {
-    return path.join(userDataPath, 'Data', 'systems', systemFolderName())
+  if (fs.existsSync(developmentOptions.userDataPath)) {
+    return path.join(developmentOptions.userDataPath, 'Data', 'systems', systemFolderName())
   }
   return path.join(__dirname, 'build/')
 }
 
 /** Set optimization options for when @constant buildMode is `production` */
 const optimization =
-  buildMode === 'production'
+  buildMode === buildModes.production
     ? {
         minimize: true,
         minimizer: [
@@ -68,7 +69,7 @@ const optimization =
  * production and development
  */
 const bundleScript = {
-  bail: buildMode === 'production',
+  bail: buildMode === buildModes.production,
   context: __dirname,
   entry: './module/coc7.js',
   devtool: 'inline-source-map',
@@ -97,14 +98,14 @@ const bundleScript = {
         options: {
           workers: os.cpus().length + 1,
           poolRespawn: false,
-          poolTimeout: buildMode === 'production' ? 500 : Infinity
+          poolTimeout: buildMode === buildModes.production ? 500 : Infinity
         }
       }
     ]
   },
   optimization,
   output: {
-    clean: (buildMode === 'production'),
+    clean: (buildMode === buildModes.production),
     path: buildDestination(),
     filename: 'bundle.js'
   },
@@ -131,7 +132,7 @@ const bundleScript = {
   resolve: {
     extensions: ['.js']
   },
-  watch: buildMode === 'development'
+  watch: buildMode === buildModes.development
 }
 
 export default bundleScript

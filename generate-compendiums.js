@@ -5,9 +5,9 @@ import { loadAll } from './node_modules/js-yaml/index.js'
 
 const lang = 'en'
 
-let foundryVTTFile = ''
+let foundryVTTFile = '' // const setup file
 let check = ''
-const collisions = {}
+const collisions = {} // Hash collection
 if (fs.existsSync(check = './system.json')) {
   foundryVTTFile = check
 } else if (fs.existsSync(check = './module.json')) {
@@ -15,36 +15,36 @@ if (fs.existsSync(check = './system.json')) {
 }
 
 if (foundryVTTFile !== '') {
-  const packs = {}
-  const json = JSON.parse(fs.readFileSync(foundryVTTFile, 'utf8'))
+  const packs = {} // foundryVTTFile.packs[*].path{*.db filename} => foundryVTTFile.packs[*].type
+  const json = JSON.parse(fs.readFileSync(foundryVTTFile, 'utf8')) // the setup file as json
   for (const pack of json.packs) {
-    const match = pack.path.match(/([^\\/]+)\.db$/)
+    const match = pack.path.match(/([^\\/]+)\.db$/) // [1] is file name
     if (match) {
       packs[match[1]] = pack.type
     }
   }
   console.log('Known packs', packs)
-  const dbList = glob.sync('./compendiums/*.yaml', {})
+  const dbList = glob.sync('./compendiums/*.yaml', {}) // *.db file list
   for (const filename of dbList) {
-    const match = filename.match(/^\.\/compendiums\/([^/]+)\.yaml$/)
+    const match = filename.match(/^\.\/compendiums\/([^/]+)\.yaml$/) // [1] is *.yaml file name
     if (match) {
-      const fileslug = match[1]
-      if (typeof packs[fileslug] !== 'undefined') {
+      const fileslug = match[1] // *.yaml file name
+      if (typeof packs[fileslug] !== 'undefined') { // if foundryVTTFile.packs[*].path{*.db filename} contained *.yaml filename
         const type = packs[fileslug]
-        let yaml = loadAll(fs.readFileSync(filename, 'utf8'))
+        let yaml = loadAll(fs.readFileSync(filename, 'utf8')) // source file
         yaml = yaml.filter(doc => doc).map(doc => {
           if (!doc._id) {
             // Make sure we don't generate new ids everytime we rebuild
-            doc._id = generateBuildConsistentID(doc.name + lang + JSON.stringify(doc.flags.cocidFlag.eras))
+            doc._id = generateBuildConsistentID(doc.name + lang + JSON.stringify(doc.flags.cocidFlag.eras)) // in theory id does not need to be specified
           }
-          doc.flags = {
+          doc.flags = { // repackages flags to CoC7 key
             CoC7: doc.flags
           }
-          switch (type) {
+          switch (type) { // does custom handling like filling id in children or splitting names
             case 'Item':
               switch (doc.type) {
                 case 'skill': {
-                  const match = doc.name.match(/^(.+)\s*\((.+)\)$/)
+                  const match = doc.name.match(/^(.+)\s*\((.+)\)$/) // splits skill definition like: skillName (specialization)
                   if (match) {
                     doc.system.skillName = match[2].trim()
                     doc.system.specialization = match[1].trim()
@@ -57,7 +57,7 @@ if (foundryVTTFile !== '') {
               }
               break
             case 'RollTable':
-              if (typeof doc.results !== 'undefined') {
+              if (typeof doc.results !== 'undefined') { // looks like auto builds table range?
                 let range = 0
                 for (const offset in doc.results) {
                   if (!doc.results[offset]._id) {
@@ -83,7 +83,7 @@ if (foundryVTTFile !== '') {
           fs.mkdirSync(packDir, { recursive: true })
         }
         console.log('Generating: ' + file)
-        fs.writeFileSync(file, yaml.map(doc => JSON.stringify(doc)).join('\n'))
+        fs.writeFileSync(file, yaml.map(doc => JSON.stringify(doc)).join('\n')) // writes the input file back filling _id's
       }
     }
   }
